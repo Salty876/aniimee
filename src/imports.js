@@ -1,7 +1,7 @@
 export async function getAnimeTitle() {
 
 
-const apiEndPoint = 'https://api.jikan.moe/v4/seasons/now'
+const apiEndPoint = 'https://api.jikan.moe/v4/top/anime'
 
     const res = await fetch(apiEndPoint)
      if (!res.ok){
@@ -33,7 +33,7 @@ export async function fecthAnimeInfo(ID){
                 throw new Error('HTTP error! status: ${res.status}')
             }
             const data = await res.json()
-            console.log(data.title)
+     
             return await data
             }
 
@@ -45,7 +45,7 @@ export async function fetchAnimeRecomendations(ID){
                     throw new Error('HTTP error! status: ${res.status}')
                 }
                 const data = await res.json()
-                console.log(data.title)
+                
                 return await data
 
 }

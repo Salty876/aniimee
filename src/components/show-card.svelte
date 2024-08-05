@@ -1,27 +1,21 @@
 <script>
     import { goto } from '$app/navigation';
-    import { animeInfo } from '/Users/salabdoulaye/aniimee/src/stores'
+
   
     export let title
     export let poster
     export let animeID
 
-    function setID(ID){
-     $animeInfo = ID
-
-     goto('/animeInfo')
-     console.log(ID)
-    }
-    
+  
 </script>
 
 <main> 
     
 <div class="card">
-<!-- <a href="/animeInfo"> -->
+<a href='/anime/{animeID}' data-sveltekit-reload>
    
-        <input class='img' type="image" src="{poster}" alt="anime-poster" on:click={setID(animeID)} href='/animeInfo'/>
-<!-- </a> -->
+        <input class='img' type="image" src="{poster}" alt="anime-poster" href='/animeInfo' data-sveltekit-reload/>
+</a>
 
     <p class="anime-title">{title}</p>
 

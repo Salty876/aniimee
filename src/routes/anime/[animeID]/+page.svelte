@@ -1,22 +1,46 @@
-<script>
-    import { get } from "svelte/store";
-    import {animeInfo} from '/Users/salabdoulaye/aniimee/src/stores'
-
+<script defer>
+    // window.location.reload();
+    import { onMount } from 'svelte';
+    import { invalidateAll } from '$app/navigation';
     import Card from '/Users/salabdoulaye/aniimee/src/components/show-card.svelte'
 
-    import { fecthAnimeInfo } from '/Users/salabdoulaye/aniimee/src/imports'
-    import { fetchAnimeRecomendations } from "/Users/salabdoulaye/aniimee/src/imports";
-    const animeCount = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
+    console.log('pageChange')
+    let tempCode = []
+    let animeData
+    let anime
 
-    let promise = fecthAnimeInfo($animeInfo)
+    let animeInfoLoaded = false
 
-    let otherPromise = fetchAnimeRecomendations($animeInfo)
+    onMount(async() => {
+        
+ 
+        tempCode = window.location.pathname.split('/')
+      
+        
+        const res = await fetch("https://api.jikan.moe/v4/anime/" + tempCode[2] +  "/full");
+		animeData = await res.json();
 
+        const rep = await fetch("https://api.jikan.moe/v4/anime/" + tempCode[2] +"/recommendations");
+		anime = await rep.json();
+
+        console.log("https://api.jikan.moe/v4/anime/" + tempCode[2] +  "/full")
+
+
+        invalidateAll();
+        animeInfoLoaded = true
+        
+        return tempCode
+
+        
+    })
+
+
+    
+    
+    
 </script>
-
-{#await promise}
-    <p>waiting</p>
-{:then animeData} 
+{#if animeInfoLoaded}
+{#if animeData}
 <div class='top-container'>
     <div class="right-info">
 
@@ -44,8 +68,8 @@
         <p class="info"><strong>Duration: </strong>{animeData.data.duration}</p>
         <p class="info"><strong>Status: </strong>{animeData.data.status}</p>
         <p class="info"><strong>MAL Score: </strong>{animeData.data.score}</p>
-        <!-- add the genre shit -->
-        <div class="genres">
+      
+              <div class="genres">
         {#each animeData.data.genres as num}
             <a href="#">
                 <button class="genre-button">
@@ -57,23 +81,34 @@
 
     </div>
 </div>
+{/if}
 
-{/await}
 
+
+    <!-- <p>waiting</p> -->
+
+
+
+
+{#if anime}
 <div class="The-bottom">
     <h1>Recomendations</h1>
     <div class="recomendations">
-       {#await otherPromise}
-        <p>waitup</p>
-       {:then recomendations} 
-            {#each animeCount as anime}
-                <Card title={recomendations.data[anime].entry.title} poster={recomendations.data[anime].entry.images.webp.image_url} animeID={recomendations.data[anime].entry.mal_id}></Card>
+
+        
+
+            {#each anime.data as animes}
+                <Card title={animes.entry.title} poster={animes.entry.images.webp.image_url} animeID={animes.entry.mal_id}></Card>
             {/each}
-       {/await}
+ 
     </div>
 </div>
+{:else}
+<p>None</p>
+{/if}
+{/if}
 
-
+ 
 
 <style>
     .top-container{
@@ -176,4 +211,4 @@
         display: flex;
         flex-wrap: wrap;
     }
-</style>
+</style>  
