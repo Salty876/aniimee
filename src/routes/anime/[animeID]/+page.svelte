@@ -1,4 +1,4 @@
-<script defer>
+<script>
     // window.location.reload();
     import { onMount } from 'svelte';
     import { invalidateAll } from '$app/navigation';
@@ -17,7 +17,7 @@
         tempCode = window.location.pathname.split('/')
       
         
-        const res = await fetch("https://api.jikan.moe/v4/anime/" + tempCode[2] +  "/full");
+        const res = await fetch("https://hippoanimeapi.vercel.app/anime/gogoanime/info/" + tempCode[2]);
 		animeData = await res.json();
 
         const rep = await fetch("https://api.jikan.moe/v4/anime/" + tempCode[2] +"/recommendations");
@@ -39,41 +39,36 @@
     
     
 </script>
-{#if animeInfoLoaded}
+
 {#if animeData}
 <div class='top-container'>
     <div class="right-info">
 
         <div class='right-right'>
-            <h1 class="title">{animeData.data.title}</h1>
-            <img class='anime-poster' src="{animeData.data.images.webp.image_url}" alt="{animeData.data.title}'s Poster"/>
+            <h1 class="title">{animeData.title}</h1>
+            <img class='anime-poster' src="{animeData.image}" alt="{animeData.title}'s Poster"/>
         </div>
 
         <div class="right-left">
-            <a href="#" target="_self">
+            <a href="/anime/{tempCode[2]}/watch/{animeData.episodes[0].id}" target="_self">
                 <button class="watch-button">
                     WATCH NOW!
                 </button>
             </a>
-            <p class="synopsis">{animeData.data.synopsis}</p>
+            <p class="synopsis">{animeData.description}</p>
         </div>
         
     </div>
 
     <div class="left-info">
-        <p class="info"><strong>Japanese: </strong>{animeData.data.title_japanese}</p>
-        <p class="info"><strong>Rating: </strong>{animeData.data.rating}</p>
-        <p class="info"><strong>Aired: </strong>{animeData.data.aired.string}</p>
-        <p class="info"><strong>Premiered: </strong>{animeData.data.season} {animeData.data.year}</p>
-        <p class="info"><strong>Duration: </strong>{animeData.data.duration}</p>
-        <p class="info"><strong>Status: </strong>{animeData.data.status}</p>
-        <p class="info"><strong>MAL Score: </strong>{animeData.data.score}</p>
-      
+        <p class="info"><strong>Aired: </strong>{animeData.releaseDate}</p>
+        <p class="info"><strong>Premiered: </strong>{animeData.type}</p>
+        <p class="info"><strong>Status: </strong>{animeData.status}</p>      
               <div class="genres">
-        {#each animeData.data.genres as num}
+        {#each animeData.genres as num}
             <a href="#">
                 <button class="genre-button">
-                    {num.name}
+                    {num}
                 </button>
             </a>
         {/each}
@@ -89,7 +84,7 @@
 
 
 
-
+<!-- 
 {#if anime}
 <div class="The-bottom">
     <h1>Recomendations</h1>
@@ -106,7 +101,7 @@
 {:else}
 <p>None</p>
 {/if}
-{/if}
+{/if} -->
 
  
 

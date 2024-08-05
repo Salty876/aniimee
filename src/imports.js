@@ -1,14 +1,14 @@
 export async function getAnimeTitle() {
 
 
-const apiEndPoint = 'https://api.jikan.moe/v4/top/anime'
+const apiEndPoint = 'https://hippoanimeapi.vercel.app/anime/gogoanime/top-airing'
 
     const res = await fetch(apiEndPoint)
      if (!res.ok){
         throw new Error('HTTP error! status: ${res.status}')
     }
     const data = await res.json()
-    return await data
+    return await data.results
     }
 
     export async function getAnimeSearchResult(target) {

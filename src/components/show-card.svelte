@@ -31,6 +31,9 @@
 
   .img{
     border-radius: 2vh;
+    width: 30vw;
+    height: 40vh;
+    object-fit: contain;
   }
 
   p{

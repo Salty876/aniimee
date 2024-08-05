@@ -15,9 +15,9 @@
     <div class="cards">
         {#each animeCount as anime}
             {#await promise}
-            <p>hollon</p>
+          
             {:then title} 
-                <Card title={title.data[anime].title_english} poster = {title.data[anime].images.webp.image_url} animeID = {title.data[anime].mal_id}/>
+                <Card title={title[anime].title} poster = {title[anime].image} animeID = {title[anime].id}/>
             {:catch error}
                 <p>lil mistake</p>    
             {/await}
