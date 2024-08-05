@@ -64,6 +64,7 @@
         <p class="info"><strong>Aired: </strong>{animeData.releaseDate}</p>
         <p class="info"><strong>Premiered: </strong>{animeData.type}</p>
         <p class="info"><strong>Status: </strong>{animeData.status}</p>      
+        <p class="info"><strong>Type: </strong>{animeData.type}</p>  
               <div class="genres">
         {#each animeData.genres as num}
             <a href="#">
@@ -135,6 +136,9 @@
     }
     .anime-poster{
         border-radius: 2vh;
+        width: 30vw;
+        height: 60vh;
+        object-fit: contain;
     }
 
     .right-left{

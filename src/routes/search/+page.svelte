@@ -13,12 +13,12 @@ let searchResults
         
  
         target = window.location.search.split('=')[1]
-        properTarget = target.replace('+', " ")
+        properTarget = target.replaceAll('+', " ")
         
-        console.log(target[1])
+   
 
 
-        const res = await fetch(`https://hippoanimeapi.vercel.app/anime/gogoanime/${target}`);
+        const res = await fetch(`https://hippoanimeapi.vercel.app/anime/gogoanime/${properTarget}`);
 		searchResults = await res.json();
 
         
