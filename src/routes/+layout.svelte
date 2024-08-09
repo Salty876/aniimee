@@ -1,43 +1,77 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=My+Soul&family=Rubik:ital,wght@0,300..900;1,300..900&family=Ubuntu&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/x-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNmZjMzMWYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTIyIDE2di00YzAtMi44MjggMC00LjI0My0uODc5LTUuMTIxYy0uODI1LS44MjYtMi4xMjMtLjg3Ni00LjYyMS0uODc5djE2YzIuNDk4LS4wMDMgMy43OTYtLjA1MyA0LjYyMS0uODc5Yy44NzktLjg3OC44NzktMi4yOTMuODc5LTUuMTJtLTMtNWExIDEgMCAxIDEgMCAyYTEgMSAwIDAgMSAwLTJtMCA0YTEgMSAwIDEgMSAwIDJhMSAxIDAgMCAxIDAtMiIgY2xpcC1ydWxlPSJldmVub2RkIi8+PHBhdGggZmlsbD0iI2ZmMzMxZiIgZD0iTTE1LjU3IDMuNDg4TDEzLjQxNSA2SDE1djE2SDhjLTIuODI4IDAtNC4yNDMgMC01LjEyMS0uODc5QzIgMjAuMjQzIDIgMTguODI4IDIgMTYuMDAxdi00YzAtMi44MyAwLTQuMjQ0Ljg3OS01LjEyMkMzLjc1NyA2IDUuMTcyIDYgOCA2aDIuNTg0TDguNDMgMy40ODhhLjc1Ljc1IDAgMCAxIDEuMTM4LS45NzZMMTIgNS4zNDhsMi40My0yLjgzNmEuNzUuNzUgMCAwIDEgMS4xNC45NzYiLz48L3N2Zz4=">
+</head>
+
+
+
+<script>
+    let searchTerm = ''
+</script>
+
+
+
 <nav>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#10b981" d="M407 47c9.4-9.4 24.6-9.4 33.9 0l17.2 17.2c1.9-.1 3.9-.2 5.8-.2h32c11.2 0 21.9 2.3 31.6 6.5L543 55c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L564 101.9c7.6 12.2 12 26.7 12 42.1c0 10.2 7.4 18.8 16.7 23c27.9 12.5 47.3 40.5 47.3 73c0 26.2-12.6 49.4-32 64v32c0 8.8-7.2 16-16 16H560c-8.8 0-16-7.2-16-16V320H480v16c0 8.8-7.2 16-16 16H432c-8.8 0-16-7.2-16-16V318.4c-11.8-2.4-22.7-7.4-32-14.4c-1.5-1.1-2.9-2.3-4.3-3.5c-17-14.7-27.7-36.4-27.7-60.5c0-8.8-7.2-16-16-16s-16 7.2-16 16c0 44.7 26.2 83.2 64 101.2V352c0 17.7 14.3 32 32 32h32v64c0 17.7-14.3 32-32 32H352c-17.7 0-32-14.3-32-32V372c-19.8 7.7-41.4 12-64 12s-44.2-4.3-64-12v76c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V329.1L45.9 369.7c-5.4 12.1-19.6 17.6-31.7 12.2S-3.3 362.4 2.1 350.3L24 300.9c5.3-11.9 8-24.7 8-37.7C32 155.7 117.2 68 223.8 64.1l.2-.1h7.2H256h32c41.7 0 83.4 12.1 117.2 25.7c1.7-1.8 3.5-3.6 5.3-5.2L407 81c-9.4-9.4-9.4-24.6 0-33.9zm73 185a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zm88 24a24 24 0 1 0 0-48 24 24 0 1 0 0 48zM480 144a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zm48 16a16 16 0 1 0 0-32 16 16 0 1 0 0 32z"/></svg>  
+    <a href="/">
+        <h1 class='emblem'>Soul TV</h1>
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="#ff331f" fill-rule="evenodd" d="M22 16v-4c0-2.828 0-4.243-.879-5.121c-.825-.826-2.123-.876-4.621-.879v16c2.498-.003 3.796-.053 4.621-.879c.879-.878.879-2.293.879-5.12m-3-5a1 1 0 1 1 0 2a1 1 0 0 1 0-2m0 4a1 1 0 1 1 0 2a1 1 0 0 1 0-2" clip-rule="evenodd"/><path fill="#ff331f" d="M15.57 3.488L13.415 6H15v16H8c-2.828 0-4.243 0-5.121-.879C2 20.243 2 18.828 2 16.001v-4c0-2.83 0-4.244.879-5.122C3.757 6 5.172 6 8 6h2.584L8.43 3.488a.75.75 0 0 1 1.138-.976L12 5.348l2.43-2.836a.75.75 0 0 1 1.14.976"/></svg>
+    </a>
     <form action="/search/1" data-sveltekit-reload>
-        <input type="text" class="search-bar" name="search-bar">
+        <input type="text" class="search-bar" name="search-bar" bind:value={searchTerm}>
+        {#if searchTerm}
         <input type="submit" class="submit-button" value="Search">
+        {/if}
     </form>
 
-    <!-- <a href="">Random</a> -->
 
 </nav>
 
 <slot></slot>
 
-
+<div class="credits">
+    <a href="https://github.com/Salty876" target="_blank">Site by Salty</a>
+</div>
 
 <style>
+
+    .emblem{
+        font-family: "My Soul", cursive;
+        font-weight: 700;
+        font-style: normal;
+        font-size: xx-large;
+        padding-right: 3vw;
+    }
+    
+
     form{
         margin: 0;
         width: 25vw;
 
         display: flex;
-        justify-content: space-around;
         padding-right: 3vw;
     }
 
     .submit-button{
-        background-color: #10b981;
+        background-color: #FF331F;
         border: 0;
-        border-radius: 5vh;
         color: white;
     }
     .submit-button:hover{
-        color: #10b981;
-        background-color: white;
+        color: #FF331F;
+        background-color: #363537;
     }
 
     .search-bar{
-        height: 2vh;
+        height: 4vh;
         width: 20vw;
-        border-radius: 1vh;
+        border-radius: 0.2vh;
+        border: none;
+        background-color: #363537;
+        color: white;
+        font-size: medium;
     }
 
     .search-bar:focus{
@@ -54,7 +88,7 @@
     nav{
         height: 10vh;
         width: 100vw;
-        background-color: #18181b;
+        background-color: #1F1E1F;
 
         display: flex;
         justify-content:space-between;
@@ -63,22 +97,73 @@
 
         margin-bottom: 3vh;
 
+        position: absolute;
+
     }
 
     a{
         color: white;
         text-decoration: none;
         font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding-left: 2vw;
+        position: relative;
     }
 
-    a:hover{
-        color: #10b981;
+
+
+    .credits{
+        width: 100vw;
+        height: 8vh;
+        background-color: #1F1E1F;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     
 
     :global(body){
-            background: #27272a;
+            background: #363537;
             margin: 0;
+        }
+
+
+        @media(max-width: 600px)  {
+
+            nav{
+                height: 15vh;
+                width: 100vw;
+
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+       
+            }
+
+            .search-bar{
+                width: 70vw;
+                margin-bottom: 6vh;
+            }
+            .credits{
+                width: 100vw;
+                height: 10vh;
+            }
+            form{
+                width: 100vw;
+                display: flex;
+                justify-content: center;
+            }
+            .submit-button{
+                height: 5vw;
+            }
+
+            .emblem{
+                padding-top: 3vh ;
+            }
         }
 </style>

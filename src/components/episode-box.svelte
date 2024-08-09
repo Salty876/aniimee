@@ -30,8 +30,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #043726;
+        background-color: #3D0500;
         border: none;
+
+        border-radius: 0.2vw;
+        color: white;
     }
 
     .episode-box-cannon{
@@ -42,8 +45,23 @@
         justify-content: center;
         align-items: center;
 
-        background-color: #6FD5B3;
+        background-color: #FF331F;
         border: none;
+        border-radius: 0.2vw;
+        color: white;
+    }
 
+    a{
+        text-decoration: none;
+    }
+
+    @media(max-width: 600px) {
+        .episode-box-cannon{
+            width: 15vw;
+        }
+
+        .episode-box-filler{
+            width: 15vw;
+        }
     }
 </style>

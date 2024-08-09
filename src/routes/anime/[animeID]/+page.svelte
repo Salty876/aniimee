@@ -68,6 +68,12 @@
     {#if animeData}
     <title>{animeData.title}</title> 
     {/if}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=My+Soul&family=Noto+Sans+Nag+Mundari:wght@400..700&family=Rubik:ital,wght@0,300..900;1,300..900&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Ubuntu&display=swap" rel="stylesheet">
+
 </svelte:head>
 
 {#if animeData && MALanime}
@@ -75,7 +81,6 @@
     <div class="right-info">
 
         <div class='right-right'>
-            <h1 class="title">{animeData.title}</h1>
             <img class='anime-poster' src="{animeData.image}" alt="{animeData.title}'s Poster"/>
         </div>
 
@@ -86,16 +91,21 @@
                 </button>
             </a>
             <p class="synopsis">{MALanime.synopsis}</p>
+            <h1 class="title">{animeData.title}</h1>
+
         </div>
         
     </div>
 
     <div class="left-info">
-        <p class="info"><strong>Japanese: </strong>{animeData.releaseDate}</p>
-        <p class="info"><strong>Premiered: </strong>{animeData.releaseDate}</p>
-        <p class="info"><strong>Status: </strong>{animeData.status}</p>      
+        <p class="info"><strong>Japanese: </strong>{MALanime.title_japanese }</p>
+        <p class="info"><strong>Premiered: </strong>{MALanime.year}</p>
+        <p class="info"><strong>Status: </strong>{MALanime.status}</p>      
         <p class="info"><strong>Total Episodes: </strong>{animeData.totalEpisodes}</p>  
         <p class="info"><strong>Type: </strong>{animeData.type}</p>  
+        <p class="info"><strong>Rating: </strong>{MALanime.score}/10</p>  
+
+
               <div class="genres">
         {#each MALanime.genres as genre}
             <a href="#">
@@ -114,7 +124,7 @@
 <div class="The-bottom">
 
     <div class="recomendations">
-        <h2>recomendations</h2>
+        <h2 class="callRec">Recomendations</h2>
         <div class="card-box">
             {#each animeData.recommendations as recommendation}
                 <Card title={recommendation.title} animeID={recommendation.id} poster={recommendation.image}></Card>
@@ -127,7 +137,7 @@
 
 <div class="episodes">
     <div class="episodes-top">
-        <h1>Episodes</h1>
+        <h1 class="callEp">Episodes</h1>
         <button on:click={()=>changeOrder()} class="order">{order}  </button>
     </div>
     
@@ -163,9 +173,10 @@
 
 <style>
     .top-container{
+        padding-top: 100px;
         width: 100vw;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
 
         gap:3vw
@@ -175,10 +186,10 @@
     .right-info{
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: start;
         gap: 5vw;
 
-        width: 65vw;
+        width: 80vw;
     }
 
     .right-right{
@@ -188,17 +199,21 @@
     }
     .title{
         color: white;
+        font-family: "Noto Sans Nag Mundari", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
     }
-    .anime-poster{
-        border-radius: 2vh;
-        width: 30vw;
-        height: 60vh;
-        object-fit: contain;
+    img{
+        width: 15vw;
+        height: 25h;
+        padding-left: 2vw;
+
     }
 
     .right-left{
         display: flex;
-        flex-direction: column;
+        flex-direction:column-reverse;
         align-items: start;
         
         gap: 3vh;
@@ -210,41 +225,71 @@
         height: 7vh;
         border-radius: 1vh;
 
-        background-color: #10b981;
-        border-color: #10b981;
+        background-color: #FF331F;
+        border-color: #FF331F;
 
         color: white;
         font-size:x-large;
         font-weight: 1000;
     }
+
+    .callEp{
+        padding-left: 4vw;
+        font-family: "Rubik", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        color: #FF331F;
+
+    }
     .watch-button:hover{
         border: 10px;
-        border-color: #10b981;
-        color: #10b981;
+        border-color: #FF331F;
+        color: #FF331F;
         background-color: #27272a;
     }
     .synopsis{
         color: white;
+        font-family: "Noto Sans Nag Mundari", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        width: 50vw;
+        font-size: small;
+    }
+
+    .callRec{
+        padding-left: 4vw;
+        font-family: "Rubik", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        color: #FF331F;
     }
 
     
 
     .left-info{
-        width: 30vw;
+        width: 20vw;
         border-left: 10px;
         border-right: 0;
         border-top: 0;
         border-bottom: 0;
 
-        border-color: #10b981;
+        border-color: #FF331F;
     }
 
     .info{
         color: white;
+        font-family: "Noto Sans Nag Mundari", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-size: small;
     }
 
     .genre-button{
-        background-color: #10b981;
+        background-color: #FF331F;
         color: white;
         font-weight: 700;
         border: none;
@@ -318,5 +363,59 @@
         border: none;
         width: 3vw;
         height: 3vh;
+        background-color: #FF331F;
+        border: none;
+        color: white;
+        border-radius: 0.1vw;
+    }
+
+    @media(max-width: 600px)  {
+        .top-container{
+            flex-direction: column;
+
+    }
+
+    .right-info{
+        flex-direction: column;
+    }
+    .synopsis{
+        width: 95vw;
+    }
+    img{
+        width: 100%;
+        height: 100%;
+        padding-top: 50px;
+    }
+    .left-info{
+        width: 90vw;
+    }
+
+    .watch-button{
+        width: 70vw;
+    }
+
+    .The-bottom{
+        flex-direction: column-reverse;
+    }
+
+    .small-episode-box-asc{
+        width: 100;
+        justify-content: center;
+    }
+    .small-episode-box-desc{
+        width: 100;
+        justify-content: center;
+
+    }
+
+    .episodes{
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .order{
+        width: 15vw;
+    }
     }
 </style>  

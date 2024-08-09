@@ -1,7 +1,7 @@
-export async function getAnimeTitle() {
+export async function getAnimeTitle(end) {
 
 
-const apiEndPoint = 'https://hippoanimeapi.vercel.app/anime/zoro/top-airing'
+const apiEndPoint = 'https://hippoanimeapi.vercel.app/anime/zoro/' + end
 
     const res = await fetch(apiEndPoint)
      if (!res.ok){
@@ -10,6 +10,7 @@ const apiEndPoint = 'https://hippoanimeapi.vercel.app/anime/zoro/top-airing'
     const data = await res.json()
     return await data.results
     }
+
 
     export async function getAnimeSearchResult(target) {
 
