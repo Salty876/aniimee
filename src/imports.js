@@ -1,7 +1,7 @@
 export async function getAnimeTitle() {
 
 
-const apiEndPoint = 'https://hippoanimeapi.vercel.app/anime/gogoanime/top-airing'
+const apiEndPoint = 'https://hippoanimeapi.vercel.app/anime/zoro/top-airing'
 
     const res = await fetch(apiEndPoint)
      if (!res.ok){

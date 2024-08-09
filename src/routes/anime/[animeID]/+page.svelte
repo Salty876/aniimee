@@ -1,15 +1,27 @@
+
+
+
 <script>
     // window.location.reload();
     import { onMount } from 'svelte';
-    import { invalidateAll } from '$app/navigation';
+    import { invalidateAll } from '$app/navigation';    
+    import Episode from '/Users/salabdoulaye/aniimee/src/components/episode-box.svelte'
     import Card from '/Users/salabdoulaye/aniimee/src/components/show-card.svelte'
+
 
     console.log('pageChange')
     let tempCode = []
     let animeData
-    let anime
+    let MALanime
+    let organizedEpisodes
+    let arrayof100
+    let order = 'desc'
+
+
 
     let animeInfoLoaded = false
+
+
 
     onMount(async() => {
         
@@ -17,30 +29,48 @@
         tempCode = window.location.pathname.split('/')
       
         
-        const res = await fetch("https://hippoanimeapi.vercel.app/anime/gogoanime/info/" + tempCode[2]);
+        const res = await fetch("https://hippoanimeapi.vercel.app/anime/zoro/info?id=" + tempCode[2]);
 		animeData = await res.json();
 
-        const rep = await fetch("https://api.jikan.moe/v4/anime/" + tempCode[2] +"/recommendations");
-		anime = await rep.json();
 
-        console.log("https://api.jikan.moe/v4/anime/" + tempCode[2] +  "/full")
+        const rep = await fetch("https://api.jikan.moe/v4/anime/" + animeData.malID +"/full");
+		MALanime = await rep.json();
+        MALanime = MALanime.data
+        console.log(MALanime)
 
 
         invalidateAll();
         animeInfoLoaded = true
+
+
+        if (animeData.totalEpisodes > 100){
+
+        }
         
         return tempCode
 
         
+        
     })
 
 
-    
+    function changeOrder(){
+        if (order === 'desc'){
+            order = 'asc'
+        }else if (order === 'asc'){
+            order = 'desc'
+        }
+    }
     
     
 </script>
+<svelte:head>
+    {#if animeData}
+    <title>{animeData.title}</title> 
+    {/if}
+</svelte:head>
 
-{#if animeData}
+{#if animeData && MALanime}
 <div class='top-container'>
     <div class="right-info">
 
@@ -55,54 +85,79 @@
                     WATCH NOW!
                 </button>
             </a>
-            <p class="synopsis">{animeData.description}</p>
+            <p class="synopsis">{MALanime.synopsis}</p>
         </div>
         
     </div>
 
     <div class="left-info">
-        <p class="info"><strong>Aired: </strong>{animeData.releaseDate}</p>
-        <p class="info"><strong>Premiered: </strong>{animeData.type}</p>
+        <p class="info"><strong>Japanese: </strong>{animeData.releaseDate}</p>
+        <p class="info"><strong>Premiered: </strong>{animeData.releaseDate}</p>
         <p class="info"><strong>Status: </strong>{animeData.status}</p>      
+        <p class="info"><strong>Total Episodes: </strong>{animeData.totalEpisodes}</p>  
         <p class="info"><strong>Type: </strong>{animeData.type}</p>  
               <div class="genres">
-        {#each animeData.genres as num}
+        {#each MALanime.genres as genre}
             <a href="#">
                 <button class="genre-button">
-                    {num}
+                    {genre.name}
                 </button>
             </a>
         {/each}
         </div>
 
+       
+
     </div>
+   
 </div>
-{/if}
-
-
-
-    <!-- <p>waiting</p> -->
-
-
-
-<!-- 
-{#if anime}
 <div class="The-bottom">
-    <h1>Recomendations</h1>
+
     <div class="recomendations">
-
-        
-
-            {#each anime.data as animes}
-                <Card title={animes.entry.title} poster={animes.entry.images.webp.image_url} animeID={animes.entry.mal_id}></Card>
+        <h2>recomendations</h2>
+        <div class="card-box">
+            {#each animeData.recommendations as recommendation}
+                <Card title={recommendation.title} animeID={recommendation.id} poster={recommendation.image}></Card>
             {/each}
- 
+        </div>
     </div>
+
+
+
+
+<div class="episodes">
+    <div class="episodes-top">
+        <h1>Episodes</h1>
+        <button on:click={()=>changeOrder()} class="order">{order}  </button>
+    </div>
+    
+    {#if order === 'asc'}
+
+    <div class="small-episode-box-asc">
+        {#each animeData.episodes as episode}
+        <Episode episodeNum={episode.number}  episodeID={episode.id} animeID={animeData.id} filler={episode.isFiller} ></Episode>
+    {/each}
+    </div>
+
+    {:else}
+
+    <div class="small-episode-box-desc">
+        {#each animeData.episodes as episode}
+        <Episode episodeNum={episode.number}  episodeID={episode.id} animeID={animeData.id} filler={episode.isFiller} ></Episode>
+    {/each}
+    </div>
+
+    {/if}
 </div>
-{:else}
-<p>None</p>
+    
+
+</div>
+
+
+
 {/if}
-{/if} -->
+
+
 
  
 
@@ -203,11 +258,65 @@
 
     .The-bottom{
         width: 100vw;
+        display: flex;
+        flex-direction: row;
+
     }
 
     .recomendations{
-        width: 90vw;
+
         display: flex;
+        flex-direction: column;
+        justify-content: baseline;
+        align-items: baseline;
         flex-wrap: wrap;
+        
+    }
+
+
+    .small-episode-box-asc{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.3vw;
+        overflow: auto;
+        height: 40vh;
+    }
+    .small-episode-box-desc{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap-reverse;
+        gap: 0.3vw;
+        overflow: auto;
+        height: 40vh;
+
+    }
+    .card-box{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 75vw;
+    }
+    .episodes{
+        width: 25vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .episodes-top{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 4vw;
+        object-fit: fill;
+        
+    }
+
+    .order{
+        border: none;
+        width: 3vw;
+        height: 3vh;
     }
 </style>  

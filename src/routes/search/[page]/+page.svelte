@@ -7,6 +7,7 @@ import Card from '/Users/salabdoulaye/aniimee/src/components/show-card.svelte'
 let target
 let properTarget
 let searchResults
+let page
 
 
     onMount(async() => {
@@ -14,11 +15,13 @@ let searchResults
  
         target = window.location.search.split('=')[1]
         properTarget = target.replaceAll('+', " ")
+        // page = window.location.pathname.split('/')
+        // console.log(page)[5]
         
    
 
 
-        const res = await fetch(`https://hippoanimeapi.vercel.app/anime/gogoanime/${properTarget}`);
+        const res = await fetch(`https://hippoanimeapi.vercel.app/anime/zoro/${properTarget}`);
 		searchResults = await res.json();
 
         
@@ -41,7 +44,13 @@ let searchResults
 
     </div>
   
-
+    <!-- <div class="bottom">
+        {#each {length: searchResults.totalPages} as button}
+            <a href="/search/{button}">
+                <button>{button}</button>
+            </a>
+        {/each}
+    </div> -->
 
 </div>
 

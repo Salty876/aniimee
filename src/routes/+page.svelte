@@ -10,6 +10,12 @@
 
 </script>
 
+<svelte:head>
+
+    <title>SoulTv</title> 
+
+</svelte:head>
+
 <div class="Main-container">
     <h1>Popular</h1>
     <div class="cards">

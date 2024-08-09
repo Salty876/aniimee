@@ -14,7 +14,7 @@
 <div class="card">
 <a href='/anime/{animeID}' data-sveltekit-reload>
    
-        <input class='img' type="image" src="{poster}" alt="anime-poster" href='/animeInfo' data-sveltekit-reload/>
+        <input class='img' type="image" src="{poster}" alt="anime-poster" href='/anime/{animeID}' data-sveltekit-reload/>
 </a>
 
     <p class="anime-title">{title}</p>
