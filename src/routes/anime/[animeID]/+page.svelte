@@ -108,11 +108,11 @@
 
               <div class="genres">
         {#each MALanime.genres as genre}
-            <a href="#">
+            
                 <button class="genre-button">
                     {genre.name}
                 </button>
-            </a>
+
         {/each}
         </div>
 

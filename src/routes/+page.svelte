@@ -39,7 +39,7 @@
     <div class="cards">
         {#each animeCount as anime}
             {#await promise}
-          
+                <h1>wait</h1>
             {:then title} 
                 <Card title={title[anime].title} poster = {title[anime].image} animeID = {title[anime].id}/>
             {:catch error}
@@ -55,7 +55,7 @@
 
             <h1 class="subtitle">Top Airing</h1>
             {#await airing}
-                
+               <h1>wait</h1> 
             {:then airings} 
                 {#each lilCount as anime}
                     <Banner poster={airings[anime].image} animeID={airings[anime].id} title={airings[anime].title} episodes={airings[anime].sub}></Banner>
@@ -73,7 +73,8 @@
             <h1 class="subtitle">Most Favorite</h1>
 
             {#await fav}
-                
+            <h1>wait</h1>
+
             {:then airings} 
                 {#each lilCount as anime}
                     <Banner poster={airings[anime].image} animeID={airings[anime].id} title={airings[anime].title} episodes={airings[anime].sub}></Banner>
@@ -90,7 +91,7 @@
             <h1 class="subtitle">Latest Completed</h1>
 
             {#await complete}
-                
+                <h1>wait</h1>
             {:then airings} 
                 {#each lilCount as anime}
                     <Banner poster={airings[anime].image} animeID={airings[anime].id} title={airings[anime].title} episodes={airings[anime].sub}></Banner>
@@ -111,7 +112,8 @@
     <div class="cards">
         {#each animeCount as anime}
             {#await nowPromise}
-          
+            <h1>wait</h1>
+
             {:then title} 
                 <Card title={title[anime].title} poster = {title[anime].image} animeID = {title[anime].id}/>
             {:catch error}
