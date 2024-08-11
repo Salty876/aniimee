@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import Card from '../../../../components/';
+    import Card from '../../../../components/show-card.svelte';
 
 
     let page
