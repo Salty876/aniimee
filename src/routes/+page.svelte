@@ -1,9 +1,9 @@
 
 
 <script>
-    import Card from '/Users/salabdoulaye/aniimee/src/components/show-card.svelte'
-    import { getAnimeTitle} from '/Users/salabdoulaye/aniimee/src/imports'
-    import Banner from '/Users/salabdoulaye/aniimee/src/components/card-banner.svelte'
+    import Card from '../components/show-card.svelte'
+    import { getAnimeTitle} from '../imports'
+    import Banner from '../components/card-banner.svelte'
 
 
 

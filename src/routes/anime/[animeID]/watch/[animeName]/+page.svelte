@@ -16,8 +16,8 @@
 
 
 <script>
-import EpisodeBox from '/Users/salabdoulaye/aniimee/src/components/episode-box.svelte';
-import Card from '/Users/salabdoulaye/aniimee/src/components/show-card.svelte'
+import EpisodeBox from '../../../../../components/episode-box.svelte';
+import Card from  '../../../../../components/show-card.svelte'
 
 import { onMount } from 'svelte';
 

@@ -5,8 +5,8 @@
     // window.location.reload();
     import { onMount } from 'svelte';
     import { invalidateAll } from '$app/navigation';    
-    import Episode from '/Users/salabdoulaye/aniimee/src/components/episode-box.svelte'
-    import Card from '/Users/salabdoulaye/aniimee/src/components/show-card.svelte'
+    import Episode from '../../../components/episode-box.svelte'
+    import Card from '../../../components/show-card.svelte'
 
 
     console.log('pageChange')
