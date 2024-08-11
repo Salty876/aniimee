@@ -296,7 +296,9 @@ import { onMount } from 'svelte';
         height: 40vh;
 
       }
-
+      media-control-bar{
+      height: 5vh;
+    }
 
       .currentEpisde{
         font-size: medium;
