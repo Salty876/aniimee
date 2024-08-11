@@ -20,7 +20,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="#ff331f" fill-rule="evenodd" d="M22 16v-4c0-2.828 0-4.243-.879-5.121c-.825-.826-2.123-.876-4.621-.879v16c2.498-.003 3.796-.053 4.621-.879c.879-.878.879-2.293.879-5.12m-3-5a1 1 0 1 1 0 2a1 1 0 0 1 0-2m0 4a1 1 0 1 1 0 2a1 1 0 0 1 0-2" clip-rule="evenodd"/><path fill="#ff331f" d="M15.57 3.488L13.415 6H15v16H8c-2.828 0-4.243 0-5.121-.879C2 20.243 2 18.828 2 16.001v-4c0-2.83 0-4.244.879-5.122C3.757 6 5.172 6 8 6h2.584L8.43 3.488a.75.75 0 0 1 1.138-.976L12 5.348l2.43-2.836a.75.75 0 0 1 1.14.976"/></svg>
     </a>
     <form action="/search/1" data-sveltekit-reload>
-        <input type="text" class="search-bar" name="search-bar" bind:value={searchTerm}>
+        <input type="text" class="search-bar" name="search-bar" bind:value={searchTerm} placeholder=" Search">
         {#if searchTerm}
         <input type="submit" class="submit-button" value="Search">
         {/if}
@@ -36,7 +36,12 @@
 </div>
 
 <style>
+    slot{
 
+        padding-bottom: 100px;
+        width: 100%;
+        height: 100%;
+    }
     .emblem{
         font-family: "My Soul", cursive;
         font-weight: 700;
@@ -97,7 +102,8 @@
 
         margin-bottom: 3vh;
 
-        position: absolute;
+        /* position: fixed;
+        top: 0; */
 
     }
 
@@ -122,13 +128,24 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        /* position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0; */
+
+        /* position: fixed;
+        bottom: 0; */
     }
 
     
 
     :global(body){
-            background: #363537;
+            background: #1F1E1F;
             margin: 0;
+
+            height: 100%;
+            width: 100%;
         }
 
 
@@ -151,7 +168,11 @@
             }
             .credits{
                 width: 100vw;
-                height: 10vh;
+                height: 5vh;
+                /* position: fixed;
+                bottom: 00;
+                margin: 0;
+                border: 0; */
             }
             form{
                 width: 100vw;
@@ -159,7 +180,7 @@
                 justify-content: center;
             }
             .submit-button{
-                height: 5vw;
+                height: 9vw;
             }
 
             .emblem{

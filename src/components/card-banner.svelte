@@ -24,7 +24,11 @@
     <img src="{poster}" alt='{title} poster'>
 
     <div class="text">
-        <h3>{title}</h3>
+        {#if title.length < 40}
+            <h3 class="anime-title">{title}</h3>
+        {:else}
+            <h3 class="anime-title">{title.slice(0,40)}...</h3>
+        {/if}
         <p>{episodes} Episodes</p>
     </div>
 </div>

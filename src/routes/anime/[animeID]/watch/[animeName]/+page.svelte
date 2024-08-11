@@ -1,5 +1,6 @@
 <head>
     <script src="//cdn.jsdelivr.net/npm/hls.js@1"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/hls-video-element@1.2/+esm"></script>
     
     <script type="module" src="https://cdn.jsdelivr.net/npm/media-chrome@3/+esm"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,10 +16,9 @@
 
 
 <script>
-import Episode from '/Users/salabdoulaye/aniimee/src/components/episode-box.svelte'
+import EpisodeBox from '/Users/salabdoulaye/aniimee/src/components/episode-box.svelte';
 import Card from '/Users/salabdoulaye/aniimee/src/components/show-card.svelte'
 
-import 'hls-video-element';
 import { onMount } from 'svelte';
 
 
@@ -29,8 +29,6 @@ import { onMount } from 'svelte';
     let anime
     let episodeLink
     let Url
-    let captionUrl
-    let thumbnailUrl
     let currentEpisode
 
 
@@ -66,14 +64,12 @@ import { onMount } from 'svelte';
 
 
 
-     Url = "https://m3u8-proxy-cors-brown.vercel.app/cors?url=" +episodeLink.sources[0].url 
-     captionUrl = 'https://corsproxy.io/?' + episodeLink.subtitles[0].url
-     thumbnailUrl = 'https://corsproxy.io/?' + episodeLink.subtitles[1].url
-  
-      console.log(captionUrl,thumbnailUrl)
+     Url = "https://m3u8-proxy-cors-brown.vercel.app/cors?url=" + episodeLink.sources[0].url 
+
+        console.log(Url)
 
 
-
+        console.log("mounted")
 
 
 
@@ -84,20 +80,38 @@ import { onMount } from 'svelte';
 
 
 </script>
+<svelte:head>
+  {#if anime}
+  <title>Watching Episode {currentEpisode+1} of {anime.title} on Soul Tv</title>
+  {/if}
+</svelte:head>
 
+{#if episodeLink && anime && Url} 
 
-
-{#if episodeLink && anime && currentEpisode} 
 <div class="main-thing">
-  <media-controller>
+  <div class="episode-name-wrapper">
+    <!-- {#if currentEpisode} -->
+    <h1 class="currentEpisde">Episode {currentEpisode+1}: {anime.episodes[currentEpisode].title}</h1>
+    <!-- {/if} -->
+  </div>
+  <media-controller style="aspect-ratio: 16/9" >
     <hls-video
       src={Url}
       slot="media"
       crossorigin
+    
       
     >
-    <track label="English" kind="subtitles" srclang="en" src='https://corsproxy.io/?{episodeLink.subtitles[0].url}'>
-    <track label="thumbnails" kind="metadata"  src='https://corsproxy.io/?{episodeLink.subtitles[1].url}'>
+    {#each episodeLink.subtitles as subs}
+      {#if subs.lang != 'Thumbnails'}
+
+      <track label={subs.lang} kind="subtitles" srclang="en" src='https://corsproxy.io/?{subs.url}'>
+      {:else}
+      <track label="thumbnails" kind="metadata"  src='https://corsproxy.io/?{subs.url}'>
+
+      {/if}
+
+    {/each}
   
     
     </hls-video>
@@ -112,10 +126,10 @@ import { onMount } from 'svelte';
       <media-time-display showduration remaining></media-time-display>
       <media-playback-rate-button></media-playback-rate-button>
       <media-captions-menu hidden id="menu1" anchor="menu-button1"></media-captions-menu>
-    <media-captions-menu-button id="menu-button1" invoketarget="menu1"></media-captions-menu-button>
+      <media-captions-menu-button id="menu-button1" invoketarget="menu1"></media-captions-menu-button>
       <media-fullscreen-button></media-fullscreen-button>
       <media-preview-thumbnail
-    mediapreviewimage='https://corsproxy.io/?{episodeLink.subtitles[1].url}'
+
   
   ></media-preview-thumbnail>
     </media-control-bar>
@@ -127,11 +141,11 @@ import { onMount } from 'svelte';
   <div class="episodeBox">
     {#if anime.totalEpisodes < 150}
     {#each anime.episodes as episode}
-        <Episode episodeNum={episode.number} filler = {episode.isFiller} animeID={animeCode} episodeID={episode.id}></Episode>
+        <EpisodeBox episodeNum={episode.number} filler = {episode.isFiller} animeID={animeCode} episodeID={episode.id}></EpisodeBox>
     {/each} 
     {:else}
     {#each anime.episodes.slice(currentEpisode,(currentEpisode+100)) as episode}
-        <Episode episodeNum={episode.number} filler = {episode.isFiller} animeID={animeCode} episodeID={episode.id}></Episode>
+        <EpisodeBox episodeNum={episode.number} filler = {episode.isFiller} animeID={animeCode} episodeID={episode.id}></EpisodeBox>
     {/each} 
     {/if}
   </div>
@@ -167,13 +181,28 @@ import { onMount } from 'svelte';
 
 
     .main-thing{
-      padding-top: 100px;
+      padding-top: 7vh;
       width: 100vw;
-      height: 100vw;
+      height: 100%;
 
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+
+    .episode-name-wrapper{
+      display: flex;
+      flex-direction: row;
+      width: 100vw;
+    }
+
+    .currentEpisde{
+      padding-left: 2vw;
+      font-family: "Rubik", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+      font-style: normal;
+      color: #FF331F;
     }
     media-controller{
         width: 100vw;
@@ -181,6 +210,8 @@ import { onMount } from 'svelte';
         object-fit: contain;
 
     }
+
+
 
     .announcement{
         font-family: "Rubik", sans-serif;
@@ -256,5 +287,51 @@ import { onMount } from 'svelte';
       flex-direction: row;
       padding-top: 40px;
     }
+
+
+    @media(max-width: 600px)  {
+
+      media-controller{
+        width: 90vw;
+        height: 40vh;
+
+      }
+      media-control-bar{
+      width: 90vw;
+    }
+
+      .currentEpisde{
+        font-size: medium;
+      }
+
+      .end{
+        flex-direction: column;
+        gap: 10vh;
+      }
+
+      .info{
+        width: 100vw;
+        flex-direction: column;
+      }
+
+      .recs{
+        padding-top: 50px;
+        width: 100vw;
+      }
+      .cards{
+        flex-direction: column;
+        width: 100vw;
+        align-items: center;
+      }
+      .announcement{
+        padding-top: 100px;
+      }
+      .episodeBox{
+        width: 100vw;
+        justify-content: center;
+
+          }
+    }
+
 
 </style>

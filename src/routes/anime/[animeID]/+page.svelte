@@ -66,7 +66,7 @@
 </script>
 <svelte:head>
     {#if animeData}
-    <title>{animeData.title}</title> 
+    <title>{animeData.title} on Soul Tv</title> 
     {/if}
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -369,7 +369,7 @@
         border-radius: 0.1vw;
     }
 
-    @media(max-width: 600px)  {
+    @media(max-width: 1200px)  {
         .top-container{
             flex-direction: column;
 

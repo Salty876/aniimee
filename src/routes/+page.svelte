@@ -18,7 +18,7 @@
 
 <svelte:head>
 
-<title>SoulTv</title> 
+<title>Watch Peak On Soul Tv!</title> 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Ubuntu&display=swap" rel="stylesheet">
@@ -63,7 +63,7 @@
                 {/each}
 
             {/await}
-            <a href="#">
+            <a href="/chart/top-airing/1">
                 <h2 class="Learn">Learn More ►</h2>
             </a>
         </div>
@@ -80,7 +80,7 @@
                     <hr class="helpers">
                 {/each}
             {/await}
-            <a href="#">
+            <a href="/chart/most-favorite/1">
                 <h2 class="Learn">Learn More ►</h2>
             </a>
         </div>
@@ -97,7 +97,7 @@
                     <hr class="helpers">
                 {/each}
             {/await}
-            <a href="#">
+            <a href="/chart/latest-completed/1">
                 <h2 class="Learn">Learn More ►</h2>
             </a>
         </div>
@@ -136,7 +136,8 @@
     }
 
     .Main-container{
-        padding-top: 100px;
+        padding-top: 50px;
+        padding-bottom: 100px;
         display: flex;
         flex-direction: column;
         justify-content: center;
